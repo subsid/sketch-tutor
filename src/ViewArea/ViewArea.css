@@ -23,11 +23,11 @@
   }
   100% {
     opacity: 0.5;
-    top: 100%;
+    top: 80%;
   }
 }
 
 .block {
   position: relative;
-  animation: fallingBlock 30s linear;
+  animation: fallingBlock 5s linear;
 }

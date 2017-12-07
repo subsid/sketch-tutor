@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ViewArea.css';
-import Symbols from '../Symbols';
+import Templates from '../Templates';
 import Drawing from '../Drawing/Drawing';
 
 class ViewArea extends Component {
@@ -8,7 +8,7 @@ class ViewArea extends Component {
     return (
       <div className="viewArea">
         <div className="block">
-          <Drawing lines={Symbols.chinese.four}/>
+          <Drawing lines={Templates.chinese.four}/>
         </div>
       </div>
     );

@@ -23,7 +23,7 @@ class App extends Component {
           <div className="metaInfo">
             Score Info
           </div>
-          <DrawArea templateId={'four'} compareWithTemplate={_.debounce(compareWithTemplate, 2000)}/>
+          <DrawArea templateId={'four'} compareWithTemplate={_.debounce(compareWithTemplate, 1000)}/>
         </div>
       </div>
     );

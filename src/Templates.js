@@ -2,7 +2,7 @@ const chineseOneTemplates = require('./data/chinese/one_templates');
 const chineseTwoTemplates = require('./data/chinese/two_templates');
 const chineseFourTemplates = require('./data/chinese/four_templates');
 
-const Symbols = {
+const Templates = {
   chinese: {
     'one': chineseOneTemplates,
     'two': chineseTwoTemplates,
@@ -10,4 +10,4 @@ const Symbols = {
   }
 };
 
-export default Symbols;
+export default Templates;

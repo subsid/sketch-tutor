@@ -49,6 +49,7 @@ class DrawArea extends Component {
 
     this.setState(prevState => {
       prevState.lines[prevState.lines.length - 1].push(point);
+      this.props.compareWithTemplate(this.props.templateId, prevState.lines);
 
       return {
         lines: prevState.lines

@@ -4,24 +4,26 @@ import './App.css';
 import './DrawArea/DrawArea.css';
 import DrawArea from './DrawArea/DrawArea';
 import ViewArea from './ViewArea/ViewArea';
+import _ from 'lodash';
+import compareWithTemplate from './compare/compare';
 
 class App extends Component {
   componentDidMount() {
   }
 
-        // <header className="App-header">
-        //   <img src={logo} className="App-logo" alt="logo" />
-        //   <h1 className="App-title">Welcome to React</h1>
-        // </header>
+  // <header className="App-header">
+  //   <img src={logo} className="App-logo" alt="logo" />
+  //   <h1 className="App-title">Welcome to React</h1>
+  // </header>
   render() {
     return (
       <div className="App">
-        <ViewArea />
+        <ViewArea templateId={'four'}/>
         <div className="noncanvasContainer">
           <div className="metaInfo">
             Score Info
           </div>
-          <DrawArea />
+          <DrawArea templateId={'four'} compareWithTemplate={_.debounce(compareWithTemplate, 2000)}/>
         </div>
       </div>
     );

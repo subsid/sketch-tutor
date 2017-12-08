@@ -3,13 +3,6 @@ import './ViewArea.css';
 import Templates from '../Templates';
 
 class ViewArea extends Component {
-  constructor({templateId}) {
-    super();
-  }
-
-  componentDidMount() {
-  }
-
   render() {
     return (
       <div className="viewArea">

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import _ from 'lodash';
 
 import Drawing from '../Drawing/Drawing';
 
@@ -58,7 +59,9 @@ class DrawArea extends Component {
     const point = this.relativeCoordinatesForEvent(mouseEvent);
 
     this.setState(prevState => {
-      prevState.lines[prevState.lines.length - 1].push(point);
+      prevState.lines[prevState.lines.length - 1] ?
+        prevState.lines[prevState.lines.length - 1].push(point) :
+        null;
       this.props.updateLines(this.props.templateId, prevState.lines);
 
       return {
@@ -77,7 +80,7 @@ class DrawArea extends Component {
 
   render() {
     return (
-      <div 
+      <div
         className="drawArea"
         ref="drawArea"
         onMouseDown={this.handleMouseDown}

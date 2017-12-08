@@ -1,0 +1,41 @@
+@keyframes scoreBounce {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.metaData {
+  border: 1px solid black;
+  margin: 1em;
+  flex: 1;
+  dislay: flex;
+}
+
+.score {
+  font-size:  5em;
+  flex: 1;
+  opacity: 0;
+}
+
+.score-animate {
+  animation: scoreBounce 2s ease-in-out;
+}
+
+.nextTemplate {
+  font-size:  5em;
+  flex: 1;
+}
+
+.label {
+  font-size: 0.3em;
+  color: grey;
+}

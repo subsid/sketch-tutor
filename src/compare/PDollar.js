@@ -144,7 +144,6 @@ export function PDollarRecognizer() // constructor
                         distances[this.PointClouds[i].Name] = Math.max((d - 2.0) / -2.0, 0.0);
                 }
 
-          distances['max'] = distances[this.PointClouds[u].Name]
           return distances;
         };
         this.AddGesture = function(name, points)

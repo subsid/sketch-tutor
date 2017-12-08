@@ -34,7 +34,7 @@
 .block {
   font-size: 7em;
   position: relative;
-  animation: fallingBlock 4s linear infinite;
-  animation-delay: 5s;
+  animation: fallingBlock 8s linear infinite;
+  animation-delay: 3s;
   opacity: 1;
 }

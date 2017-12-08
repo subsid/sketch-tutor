@@ -53,3 +53,26 @@ span.progress {
   font-size: 0.3em;
   color: grey;
 }
+
+@media only screen and (max-height: 730px) {
+  .score {
+    font-size:  2em;
+    flex: 1;
+    opacity: 0;
+  }
+
+  .nextTemplate {
+    font-size:  2em;
+    flex: 1;
+  }
+
+  .total {
+    font-size:  0.8em;
+    margin-top: 1em;
+    flex: 1;
+  }
+
+  .label {
+    font-size: 0.2em;
+  }
+}

@@ -7,7 +7,7 @@
 
 .noncanvasContainer {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   border: 1px solid green;
   margin: 1em;
 }

@@ -13,12 +13,18 @@ class Done extends Component {
     this.props.history.push({pathname: "/play" });
   }
 
+  onClose = () => {
+    this.props.history.push({pathname: "/"});
+  }
+
+
   render() {
     return (
       <div>
         <Dialog
             iconName="inbox"
             isOpen={this.state.isOpen}
+            onClose={this.onClose}
             title="Results"
         >
           <div className="pt-dialog-body">

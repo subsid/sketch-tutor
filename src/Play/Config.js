@@ -54,6 +54,10 @@ class Config extends Component {
     }});
   }
 
+  onClose = () => {
+    this.props.history.push({pathname: "/"});
+  }
+
   render() {
     const checkBoxes = _.keys(this.state.templates).map((t, i) => {
       return (
@@ -65,6 +69,7 @@ class Config extends Component {
         <Dialog
             iconName="inbox"
             isOpen={this.state.isOpen}
+            onClose={this.onClose}
             title="Settings"
         >
           <div className="pt-dialog-body">
@@ -75,7 +80,7 @@ class Config extends Component {
             <div>
               <h4>Minimum Attempts</h4>
 	      <Slider
-		  min={5}
+		  min={1}
 		  max={100}
 		  stepSize={1}
 		  labelStepSize={10}

@@ -1,9 +1,8 @@
 import React from 'react';
 import './MetaData.css';
 import Templates from '../Templates';
-import _ from 'lodash';
 
-const threshold = 60;
+const threshold = 95;
 class MetaData extends React.Component {
   handleAnimationEnd = () => {
     this.refs.score.className = 'score';
@@ -17,14 +16,14 @@ class MetaData extends React.Component {
 
   generateMessage(score) {
     let message = '';
-    if (score > 95) {
+    if (score > threshold) {
       message = "Whoop!";
     } else if (score > 65) {
       message = "Almost there!";
     } else if (score > 40) {
       message = "Keep Going!";
     } else if (score > 20){
-      message = "☺✌"
+      message = "☺✌";
     } else {
       message = "Get started :)";
     }
@@ -42,11 +41,14 @@ class MetaData extends React.Component {
           <span className="label">Next:&nbsp;</span>
           {Templates.chinese_beautified[this.props.nextTemplate]}
         </div>
-        <div className="pt-progress-bar pt-no-stripes pt-no-animation pt-intent-success">
-          <div className="pt-progress-meter" style={{"width": `${this.props.progressScore}%`}} />
-        </div>
-        <div className="label" style={{"fontSize": "2em"}}>
-          {this.generateMessage(this.props.progressScore)}
+        <div className="total">
+          <span className="progress">Progress: {this.props.progressScore}%</span>
+          <div className="progress-bar pt-progress-bar pt-no-stripes pt-no-animation pt-intent-success">
+            <div className="pt-progress-meter" style={{"width": `${this.props.progressScore}%`}} />
+          </div>
+          <div className="label" style={{"marginTop": "1em", "fontSize": "2em"}}>
+            {this.generateMessage(this.props.progressScore)}
+          </div>
         </div>
       </div>
     );

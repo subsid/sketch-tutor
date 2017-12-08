@@ -18,12 +18,16 @@ const generateRandomInRange = (options, start, end, except, count=1) => {
 class Game extends Component {
   constructor(props) {
     super(props);
+    this.attempts = 0;
+    this.requiredAttempts = 10;
     this.state = {
       score: 0,
       linesById: [],
-      templates: ['one', 'two'],
       progressScore: 0,
     };
+    this.state.templates = this.props.location.state ?
+      this.props.location.state.templates || ['one', 'two'] :
+      ['one', 'two'];
     this.state.currentTemplate = this.state.templates[0];
     this.state.nextTemplate = this.state.templates[1];
     this.state.allScores = _.fromPairs(this.state.templates.map((t) => [t, 0]));
@@ -54,13 +58,15 @@ class Game extends Component {
     const scores = _.values(allScores);
     const nonZeros = _.filter(scores, (v) => v > 0);
 
-    let seenSymbolsScore = Math.round((nonZeros.length/scores.length) * 10);
-    let accuracyScore = (_.sum(scores)/(100 * scores.length)) * 90;
+    let seenSymbolsScore = (nonZeros.length/scores.length) * 10;
+    let attemptsScore =  Math.min((this.attempts/this.requiredAttempts), 1)  * 10;
+    let accuracyScore = Math.min((_.sum(scores)/(0.8 * 100 * scores.length)), 1) * 80;
 
-    return seenSymbolsScore;
+    return Math.round(accuracyScore + seenSymbolsScore + attemptsScore);
   }
 
   handleAnimationEnd = (event) => {
+    this.attempts += 1;
     this.setState((prevState) => {
       const score = this.compare(prevState.linesById);
       prevState.allScores[prevState.linesById[0]] = score;

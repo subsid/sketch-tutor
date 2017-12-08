@@ -38,3 +38,9 @@ body {
   to { transform: rotate(360deg); }
 }
 
+.Play {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  flex: 1;
+}

@@ -35,6 +35,20 @@
   flex: 1;
 }
 
+span.progress {
+  font-size:  1.2em;
+}
+
+.progress-bar {
+  margin-top: 1em;
+}
+
+.total {
+  font-size:  1em;
+  margin-top: 2em;
+  flex: 1;
+}
+
 .label {
   font-size: 0.3em;
   color: grey;

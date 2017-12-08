@@ -23,14 +23,14 @@ class Done extends Component {
         >
           <div className="pt-dialog-body">
             <div>
-              <h4>Select Symbols</h4>
+              <h4>Well Done! ☺👍🏼👍🏼</h4>
             </div>
           </div>
           <div className="pt-dialog-footer">
             <div className="pt-dialog-footer-actions">
               <Button
                   onClick={this.playGame}
-                  text="Play"
+                  text="Play Again"
               />
             </div>
           </div>

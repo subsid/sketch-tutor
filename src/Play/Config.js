@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Checkbox, Button, Dialog} from '@blueprintjs/core';
+import {Slider, Checkbox, Button, Dialog} from '@blueprintjs/core';
 import _ from 'lodash';
 import Templates from '../Templates';
 
@@ -8,6 +8,8 @@ class Config extends Component {
     super();
     this.state = {
       isOpen: true,
+      accuracyThreshold: 80,
+      requiredAttempts: 1,
       templates: {
         'one': true,
         'two': true,
@@ -30,11 +32,25 @@ class Config extends Component {
     });
   }
 
+  handleAccuracyTheshold = (value) => {
+    this.setState({
+      accuracyThreshold: value
+    });
+  }
+
+  handleRequiredAttempts = (value) => {
+    this.setState({
+      requiredAttempts: value
+    });
+  }
+
   playGame = () => {
     this.props.history.push({pathname: "/play/game", state: {
       templates: _.toPairs(this.state.templates)
         .filter((p) => p[1])
         .map((p) => p[0]),
+      accuracyThreshold: this.state.accuracyThreshold,
+      requiredAttempts: this.state.requiredAttempts,
     }});
   }
 
@@ -57,7 +73,26 @@ class Config extends Component {
               {checkBoxes}
             </div>
             <div>
-              <h4>Select Level</h4>
+              <h4>Minimum Attempts</h4>
+	      <Slider
+		  min={5}
+		  max={100}
+		  stepSize={1}
+		  labelStepSize={10}
+		  onChange={this.handleRequiredAttempts}
+		  value={this.state.requiredAttempts}
+	      />
+            </div>
+            <div>
+              <h4>Goal</h4>
+	      <Slider
+		  min={0}
+		  max={100}
+		  stepSize={0.5}
+		  labelStepSize={10}
+		  onChange={this.handleAccuracyTheshold}
+		  value={this.state.accuracyThreshold}
+	      />
             </div>
           </div>
           <div className="pt-dialog-footer">

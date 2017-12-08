@@ -19,7 +19,6 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.attempts = 0;
-    this.requiredAttempts = 10;
     this.state = {
       score: 0,
       linesById: [],
@@ -28,6 +27,12 @@ class Game extends Component {
     this.state.templates = this.props.location.state ?
       this.props.location.state.templates || ['one', 'two'] :
       ['one', 'two'];
+    this.state.accuracyThreshold = this.props.location.state ?
+      this.props.location.state.accuracyThreshold || 80 :
+      80;
+    this.state.requiredAttempts = this.props.location.state ?
+      this.props.location.state.requiredAttempts || 10 :
+      10;
     this.state.currentTemplate = this.state.templates[0];
     this.state.nextTemplate = this.state.templates[1];
     this.state.allScores = _.fromPairs(this.state.templates.map((t) => [t, 0]));
@@ -59,10 +64,17 @@ class Game extends Component {
     const nonZeros = _.filter(scores, (v) => v > 0);
 
     let seenSymbolsScore = (nonZeros.length/scores.length) * 10;
-    let attemptsScore =  Math.min((this.attempts/this.requiredAttempts), 1)  * 10;
+    let attemptsScore =  Math.min((this.attempts/this.state.requiredAttempts), 1)  * 10;
     let accuracyScore = Math.min((_.sum(scores)/(0.8 * 100 * scores.length)), 1) * 80;
+    const total = Math.round(accuracyScore + seenSymbolsScore + attemptsScore);
 
-    return Math.round(accuracyScore + seenSymbolsScore + attemptsScore);
+    if ((seenSymbolsScore > 9) && (attemptsScore > 9) && (total > this.state.accuracyThreshold)) {
+      this.props.history.push({
+        pathname: '/play/done',
+        allScores: this.state.allScores
+      });
+    }
+    return total;
   }
 
   handleAnimationEnd = (event) => {

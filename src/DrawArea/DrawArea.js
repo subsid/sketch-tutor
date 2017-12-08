@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import Drawing from '../Drawing/Drawing';
 
+const templateIdsNotEqual = ({templateId}, nextProps) =>
+  templateId !== nextProps.templateId;
 class DrawArea extends Component {
   constructor() {
     super();
@@ -9,6 +11,14 @@ class DrawArea extends Component {
       isDrawing: false,
       lines: [],
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (templateIdsNotEqual(this.props, nextProps)) {
+      this.setState({
+        lines: []
+      });
+    }
   }
 
   componentDidMount() {
@@ -49,7 +59,7 @@ class DrawArea extends Component {
 
     this.setState(prevState => {
       prevState.lines[prevState.lines.length - 1].push(point);
-      this.props.compareWithTemplate(this.props.templateId, prevState.lines);
+      this.props.updateLines(this.props.templateId, prevState.lines);
 
       return {
         lines: prevState.lines

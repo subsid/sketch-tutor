@@ -14,20 +14,34 @@
 
 @keyframes fallingBlock {
   0% {
-    opacity: 0.5;
-    top: 0%;
+    opacity: 0.2;
+    top: 5%;
   }
-  50% {
+  10% {
+    opacity: 0.8;
+    top: 8%;
+  }
+  40% {
     opacity: 1;
-    top: 50%;
+    top: 40%;
+  }
+  75% {
+    opacity: 1;
+    top: 70%;
+  }
+  95% {
+    opacity: 0;
+    top: 90%;
   }
   100% {
-    opacity: 0.5;
-    top: 80%;
+    opacity: 0;
+    top: 90%;
   }
 }
 
 .block {
+  transform: scale(7);
   position: relative;
-  animation: fallingBlock 5s linear;
+  animation: fallingBlock 10s linear infinite;
+  animation-fill-mode: forwards;
 }

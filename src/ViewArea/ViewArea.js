@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import './ViewArea.css';
 import Templates from '../Templates';
-import Drawing from '../Drawing/Drawing';
 
 class ViewArea extends Component {
+  constructor({templateId}) {
+    super();
+  }
+
+  componentDidMount() {
+  }
+
   render() {
     return (
       <div className="viewArea">
-        <div className="block">
-          <Drawing lines={Templates.chinese.four}/>
+        <div className="block" ref="block" onAnimationIteration={this.props.handleAnimationEnd}>
+          {Templates.chinese_beautified[this.props.templateId]}
         </div>
       </div>
     );
-  }
+  };
 }
 
 export default ViewArea;

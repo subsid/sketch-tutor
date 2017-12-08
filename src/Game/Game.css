@@ -1,0 +1,26 @@
+.Game {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  flex: 1;
+}
+
+.noncanvasContainer {
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid green;
+  margin: 1em;
+}
+
+.viewArea {
+  border: 1px solid green;
+  margin: 1em;
+  min-width: 20%;
+}
+
+.metaData {
+  border: 1px solid black;
+  margin: 1em;
+  flex: 1;
+}
+

@@ -8,6 +8,9 @@ import _ from 'lodash';
 import compareWithTemplate from '../compare/compare';
 
 const generateRandomInRange = (options, start, end, except, count=1) => {
+  if (options.length === 1) {
+    return options[0];
+  }
   let num = _.random(start, end);
 
   return (options[num] === except) ?
@@ -19,10 +22,13 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.attempts = 0;
+    // TODO :: Handle this better.
+    //         It is used by DrawArea to clear correctly.
     this.state = {
       score: 0,
       linesById: [],
       progressScore: 0,
+      templateCount: 0,
     };
     this.state.templates = this.props.location.state ?
       this.props.location.state.templates || ['one', 'two'] :
@@ -34,7 +40,7 @@ class Game extends Component {
       this.props.location.state.requiredAttempts || 10 :
       10;
     this.state.currentTemplate = this.state.templates[0];
-    this.state.nextTemplate = this.state.templates[1];
+    this.state.nextTemplate = this.state.templates[1] || this.state.templates[0];
     this.state.allScores = _.fromPairs(this.state.templates.map((t) => [t, 0]));
     this.state.seen = _.fromPairs(this.state.templates.map((t) => [t, false]));
   }
@@ -54,9 +60,11 @@ class Game extends Component {
 
   getNextTemplate(exceptTemplate) {
     const options = this.state.templates;
-
-    return _.findKey(this.state.seen, (k, n) => (k === false) && ( n !== exceptTemplate)) ||
-      generateRandomInRange(options, 0, options.length - 1, exceptTemplate);
+    if (options.length === 1) {
+      return options[0]
+    } else {
+      return generateRandomInRange(options, 0, options.length - 1, exceptTemplate);
+    }
   }
 
   computeProgress(allScores) {
@@ -87,6 +95,7 @@ class Game extends Component {
         seen: prevState.seen,
         currentTemplate: prevState.nextTemplate,
         nextTemplate: this.getNextTemplate(prevState.nextTemplate),
+        templateCount: prevState.templateCount + 1,
         score: score,
         allScores: prevState.allScores,
         progressScore: this.computeProgress(prevState.allScores),
@@ -105,7 +114,7 @@ class Game extends Component {
             allScores={this.state.allScores}
             progressScore={this.state.progressScore}
           />
-          <DrawArea updateLines={_.debounce(this.updateLines, 500)} templateId={this.state.currentTemplate} />
+          <DrawArea updateLines={_.debounce(this.updateLines, 500)} templateId={this.state.currentTemplate} templateCount={this.state.templateCount}/>
         </div>
       </div>
     );

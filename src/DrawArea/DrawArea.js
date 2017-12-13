@@ -15,7 +15,7 @@ class DrawArea extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (templateIdsNotEqual(this.props, nextProps)) {
+    if (nextProps.templateCount !== this.props.templateCount) {
       this.setState({
         lines: []
       });

@@ -1,5 +1,6 @@
 {
   "name": "sketch-final",
+  "homepage": "https://subsid.github.io/sketch-tutor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

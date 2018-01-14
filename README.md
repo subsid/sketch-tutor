@@ -1,4 +1,4 @@
-Fun way to sketch and learn new symbols.
+Fun way to sketch and learn new symbols. [Demo](https://subsid.github.io/sketch-tutor/build)
 
 Done as a part of [Dr. Hammond's](http://faculty.cse.tamu.edu/hammond/) TAMU-CSCE 624.
 
